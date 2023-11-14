@@ -4,11 +4,23 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
+
+  //Motor variables
+  private final leftLeadMotor;
+  private final rightLeadMotor;
+
+  private final leftFollower;
+  private final rightFollower;
+
+  
+
+
   
 
   public Drivetrain() {}
