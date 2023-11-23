@@ -10,12 +10,25 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Constants;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DrivetrainConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.math.filter.SlewRateLimiter; 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.ADIS16470_IMU; // replace with pigeon 2
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 
 public class Drivetrain extends SubsystemBase {
@@ -23,6 +36,9 @@ public class Drivetrain extends SubsystemBase {
 
   //Creates Differential Drive
   private final DifferentialDrive drive;
+
+  //Creates Differential Drive Kinematics
+  private final DifferentialDriveKinematics kinematics;
 
   //Creates Motor variables
   private final CANSparkMax leftLeadMotor;
@@ -43,13 +59,30 @@ public class Drivetrain extends SubsystemBase {
   SlewRateLimiter turnFilter;
   SlewRateLimiter driveFilter;
 
+   //Creates Odometry
+   private final Odometry odometry;
 
-  
+  //Create Ramsete Controller
+  private final RamseteController ramseteController;
+
+  private  double forward;
+  private  double turn;
+
+  private SimpleMotorFeedforward feedforward;
+
+  private PIDController lefPidController;
+  private PIDController righPidController;
+
+  private final ADIS16470_IMU gyro;
+
+  private Field2d field;
+
+  private static Drivetrain instance;
 
   public Drivetrain() {
 
-    driveFilter = new SlewRateLimiter();
-    turnFilter = new SlewRateLimiter();
+    gyro = new ADIS16470_IMU(); //replace with pigeon 2
+    field = new Field2d();
 
     //Initialize Motors
     leftLeadMotor = new CANSparkMax(DrivetrainConstants.LEFT_LEAD_MOTOR_CAN_ID, CANSparkMaxLowLevel.MotorType.kBrushlesss);
@@ -78,17 +111,17 @@ public class Drivetrain extends SubsystemBase {
     leftLeadMotor.setInverted(true);
     rightLeadMotor.setInverted(false);
 
-    //Sets All Motors To Break Mode
+    //Set All Motors To Break Mode
     leftLeadMotor.setIdleModer(CANSparkMax.IdleMode.kBrake);
     leftFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
     rightLeadMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
     rightFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
 
     //Follow Lead Motors
-    leftFollower.follow(leftLeadMotor, DrivetrainConstants.LEFT_MOTOR_INVERT);
+    leftFollower.follow(leftLeadMotor, DrivetrainConstants.LEFT_MOTORS_INVERT);
     rightFollower.follow(rightLeadMotor, DrivetrainConstants.RIGHT_MOTORS_INVERT);
 
-
+    //Add motors after initilization to SPARK_LIST *Saves Parameters
     Constants.SPARK_LIST.add(leftLeadMotor);
     Constants.SPARK_LIST.add(leftFollower);
     Constants.SPARK_LIST.add(rightLeadMotor);
@@ -100,12 +133,26 @@ public class Drivetrain extends SubsystemBase {
 
     //Sets Drive Subsystem
     drive = new DifferentialDrive(leftMotors, rightMotors);
+
+    //Create A Field For Displaying Robot Position Nn The Dashboard
+    SmartDashboard.putData("Field", this.field);
+
+    //Math Related Code Goes Here
+    //kinumatics
+    //Feedforward
+    //PID Controllers
+    //Slew Rate Limiters
+    driveFilter = new SlewRateLimiter();
+    turnFilter = new SlewRateLimiter();
+    //Ramsete Controllers
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
 
-    
+    double slewForward = driveFilter.calculate(forward);
+
+    drive.arcadeDrive();
   }
 }
