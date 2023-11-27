@@ -25,11 +25,11 @@ public final class Constants {
         public static final double WHEEL_CIRCUMFERANCE = WHEEL_DIAMETER * Math.PI;
         public static final double DRIVETRAIN_GEAR_RATIO;
         public static final double DRIVING_ENCODER_POS_FACTOR = WHEEL_CIRCUMFERANCE/DRIVETRAIN_GEAR_RATIO;//Unit is Meters
-        public static final double Driving_ENCODER_VEL_FACTOR = DRIVING_ENCODER_POS_FACTOR/60; //m/s
+        public static final double DRIVING_ENCODER_VEL_FACTOR = DRIVING_ENCODER_POS_FACTOR/60; //m/s
 
        // public static final double DRIVING_SPEED_MULTIPLIER = 1;
 
-        //Motor CAN ID Constants
+        // MOTOR CAN ID Constants
         public static final int LEFT_LEAD_MOTOR_CAN_ID = 2;
         public static final int LEFT_FOLLOWER_MOTOR_CAN_ID = 3;
 
@@ -38,5 +38,15 @@ public final class Constants {
 
         public static final boolean RIGHT_MOTORS_INVERT = false;
         public static final boolean LEFT_MOTORS_INVERT = false;
+
+        // Senor CAN ID Constants
+        public static final int PIGEON_GYRO_CAN_ID;
+        
+        //Math LOL Constants
+        public static final double SLEW_RATE_DRIVE_POSITIVE = 5;
+        public static final double SLEW_RATE_DRIVE_NEGATIVE = -5;
+        public static final double SLEW_RATE_TURN_POSITIVE = 5;
+        public static final double SLEW_RATE_TURN_NEGATIVE = -5;
+
     }
 }
