@@ -4,20 +4,23 @@ import java.util.ArrayList;
 
 import com.revrobotics.CANSparkMax;
 
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
 
 public final class Constants {
 
+    //list with motors and their parameters saved
     public static ArrayList<CANSparkMax> SPARK_LIST = new ArrayList<CANSparkMax>();
 
     public final static class ControllerConstants{
+        private static final double DRIVER_FORWARD_DEADBAND = .05;
+        private static final double DRIVER_TURN_DEADBAND = .05;
 
     }
     
     public final static class DrivetrainConstants{
 
         //Physical Drivetrain Constants *Physical Unit Of Measurement is Meters
+        public static final double TRACKWIDTH;
         public static final double WHEEL_DIAMETER;
         public static final double WHEEL_CIRCUMFERANCE = WHEEL_DIAMETER * Math.PI;
         public static final double DRIVETRAIN_GEAR_RATIO;
