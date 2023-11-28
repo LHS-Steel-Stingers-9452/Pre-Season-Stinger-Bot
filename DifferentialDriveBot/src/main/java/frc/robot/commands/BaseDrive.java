@@ -6,6 +6,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Constants.DrivetrainConstants;
 
 public class BaseDrive extends CommandBase{
     private final Drivetrain drive;
@@ -27,13 +28,14 @@ public class BaseDrive extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(forward.getAsDouble()*1, turn.getAsDouble()*1);
+        drive.drive(forward.getAsDouble()*DrivetrainConstants.DRIVE_SPEED_MULT, 
+            turn.getAsDouble()*DrivetrainConstants.TURN_SPEED_MULT);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Commands.runOnce(() -> Drivetrain.getInstance().drive( 0, 0));
+        Commands.runOnce(() -> Drivetrain.getInstance().drive(0, 0));
     }
 
     // Returns true when the command should end.

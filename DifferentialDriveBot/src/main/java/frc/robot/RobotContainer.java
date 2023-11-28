@@ -9,6 +9,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Drivetrain.getInstance;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.commands.BaseDrive;
@@ -28,16 +29,14 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    drivetrain = new Drivetrain();
-    driverController = new XboxController(0);
+    drivetrain =  Drivetrain.getInstance();
+    driverController = new XboxController(ControllerConstants.DRIVER_CONTROLLER_PORT);
 
-    baseDrive = new BaseDrive(drivetrain,
-      () -> MathUtil.applyDeadband(driverController.getLeftY(),
-        ControllerConstants.DRIVER_FORWARD_DEADBAND),
-      () -> MathUtil.applyDeadband(driverController.getRightX() * 0.8, 
-        ControllerConstants.DRIVER_TURN_DEADBAND));
+    baseDrive = new BaseDrive(
+      drivetrain,
+      () -> MathUtil.applyDeadband(driverController.getLeftY(), ControllerConstants.DRIVER_FORWARD_DEADBAND),
+      () -> MathUtil.applyDeadband(driverController.getRightX(), ControllerConstants.DRIVER_TURN_DEADBAND));
     
-
     drivetrain.setDefaultCommand(baseDrive);
 
   }

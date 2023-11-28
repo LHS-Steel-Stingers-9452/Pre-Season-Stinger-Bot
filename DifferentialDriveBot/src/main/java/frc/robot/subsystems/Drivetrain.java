@@ -70,6 +70,12 @@ public class Drivetrain extends SubsystemBase {
     gyro = new Pigeon2(DrivetrainConstants.PIGEON_GYRO_CAN_ID);
     //field = new Field2d();
 
+    //Slew Rate Limiters
+    driveFilter = new SlewRateLimiter(DrivetrainConstants.SLEW_RATE_DRIVE_POSITIVE,
+      DrivetrainConstants.SLEW_RATE_DRIVE_NEGATIVE, 0);
+    turnFilter = new SlewRateLimiter(DrivetrainConstants.SLEW_RATE_TURN_POSITIVE,
+      DrivetrainConstants.SLEW_RATE_TURN_NEGATIVE, 0);
+
     //Initialize Motors
     leftLeadMotor = new CANSparkMax(DrivetrainConstants.LEFT_LEAD_MOTOR_CAN_ID,
           CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -144,11 +150,6 @@ public class Drivetrain extends SubsystemBase {
     //Ramsete Controllers
     */
 
-    //Slew Rate Limiters
-    driveFilter = new SlewRateLimiter(DrivetrainConstants.SLEW_RATE_DRIVE_POSITIVE,
-      DrivetrainConstants.SLEW_RATE_DRIVE_NEGATIVE, 0);
-    turnFilter = new SlewRateLimiter(DrivetrainConstants.SLEW_RATE_TURN_POSITIVE,
-      DrivetrainConstants.SLEW_RATE_TURN_NEGATIVE, 0);
 
   }
 
@@ -164,15 +165,17 @@ public class Drivetrain extends SubsystemBase {
       turn);
   }
 
-  public static synchronized Drivetrain getInstance() {
-    if (instance == null) {
-        instance = new Drivetrain();
-    }
-    return instance;
-  }
   public void drive(double forward, double turn) {
     this.forward = -forward;
     this.turn = turn;
     drive.feed();
   }
+
+  public static synchronized Drivetrain getInstance() {
+    if (instance == null) {
+      instance = new Drivetrain();
+    }
+    return instance;
+  }
+  
 }
