@@ -10,21 +10,21 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Constants;
-import frc.robot.Constants.ControllerConstants;
+//import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DrivetrainConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.math.filter.SlewRateLimiter; 
 //math loolololol
-import com.ctre.phoenix6.hardware.Pigeon2;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+//import com.ctre.phoenix6.hardware.Pigeon2;
+//import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+//import edu.wpi.first.math.geometry.Pose2d;
+//import edu.wpi.first.math.geometry.Rotation2d;
+//import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+//import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
@@ -51,7 +51,7 @@ public class Drivetrain extends SubsystemBase {
   private RelativeEncoder rightEncoder;
 
   //creates Pigeon gyro
-  private final Pigeon2 gyro;
+  //private final Pigeon2 gyro;
 
   //Creates Forward and Turn Vars For Speed Input
   private double forward;
@@ -67,7 +67,7 @@ public class Drivetrain extends SubsystemBase {
 
   public Drivetrain() {
 
-    gyro = new Pigeon2(DrivetrainConstants.PIGEON_GYRO_CAN_ID);
+    //gyro = new Pigeon2(DrivetrainConstants.PIGEON_GYRO_CAN_ID);
     //field = new Field2d();
 
     //Slew Rate Limiters
