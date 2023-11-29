@@ -22,10 +22,10 @@ public final class Constants {
     public final static class DrivetrainConstants{
 
         //Physical Drivetrain Constants *Physical Unit Of Measurement is Meters
-        //public static final double TRACKWIDTH;
-        public static final double WHEEL_DIAMETER;
+        public static final double TRACKWIDTH = 27.88;
+        public static final double WHEEL_DIAMETER = 6.0;
         public static final double WHEEL_CIRCUMFERANCE = WHEEL_DIAMETER * Math.PI;
-        public static final double DRIVETRAIN_GEAR_RATIO;
+        public static final double DRIVETRAIN_GEAR_RATIO = 12.75;
         public static final double DRIVING_ENCODER_POS_FACTOR = WHEEL_CIRCUMFERANCE/DRIVETRAIN_GEAR_RATIO;//Unit is Meters
         public static final double DRIVING_ENCODER_VEL_FACTOR = DRIVING_ENCODER_POS_FACTOR/60; //m/s
 
