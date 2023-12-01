@@ -33,11 +33,11 @@ public final class Constants {
        public static final double TURN_SPEED_MULT = 1;
 
         // MOTOR CAN ID Constants
-        public static final int LEFT_LEAD_MOTOR_CAN_ID = 2;
-        public static final int LEFT_FOLLOWER_MOTOR_CAN_ID = 3;
+        public static final int LEFT_LEAD_MOTOR_CAN_ID = 3;
+        public static final int LEFT_FOLLOWER_MOTOR_CAN_ID = 4;
 
         public static final int RIGHT_LEAD_MOTOR_CAN_ID = 1;
-        public static final int RIGHT_FOLLOWER_MOTOR_CAN_ID = 0;
+        public static final int RIGHT_FOLLOWER_MOTOR_CAN_ID = 2;
 
         public static final boolean RIGHT_MOTORS_INVERT = false;
         public static final boolean LEFT_MOTORS_INVERT = false;
