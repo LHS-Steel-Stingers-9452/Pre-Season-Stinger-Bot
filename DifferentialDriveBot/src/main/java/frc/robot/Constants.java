@@ -13,7 +13,7 @@ public final class Constants {
 
     public final static class ControllerConstants{
 
-        public static final int DRIVER_CONTROLLER_PORT = 1;
+        public static final int DRIVER_CONTROLLER_PORT = 0;
         public static final double DRIVER_FORWARD_DEADBAND = .05;
         public static final double DRIVER_TURN_DEADBAND = .05;
 
