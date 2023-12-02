@@ -37,7 +37,7 @@ public class RobotContainer {
 
     baseDrive = new BaseDrive(
       drivetrain,
-      () -> MathUtil.applyDeadband(driverController.getLeftY(), ControllerConstants.DRIVER_FORWARD_DEADBAND),
+      () -> MathUtil.applyDeadband(-driverController.getLeftY(), ControllerConstants.DRIVER_FORWARD_DEADBAND),
       () -> MathUtil.applyDeadband(driverController.getRightX(), ControllerConstants.DRIVER_TURN_DEADBAND));
     
     drivetrain.setDefaultCommand(baseDrive);
