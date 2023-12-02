@@ -48,11 +48,11 @@ public class RobotContainer {
 
   private void configureBindings() {
   }
-/* 
+
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
   }
-  */
+  
   public static void incinerateMotors(){
     Timer.delay(0.25);
     for(CANSparkMax spark : Constants.SPARK_LIST){
