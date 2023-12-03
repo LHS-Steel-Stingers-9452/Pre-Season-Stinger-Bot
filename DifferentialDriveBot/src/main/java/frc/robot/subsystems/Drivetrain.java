@@ -23,7 +23,7 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 //import edu.wpi.first.math.geometry.Rotation2d;
 //import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 //import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends SubsystemBase {
@@ -158,11 +158,13 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    double slewForward = driveFilter.calculate(forward);
-
+    //double slewForward = driveFilter.calculate(forward);
+    /* 
     drive.arcadeDrive(
       DriverStation.isAutonomous() ? forward: slewForward, 
       turn);
+      */
+      drive.arcadeDrive(forward, turn);
   }
 
   public void drive(double forward, double turn) {
