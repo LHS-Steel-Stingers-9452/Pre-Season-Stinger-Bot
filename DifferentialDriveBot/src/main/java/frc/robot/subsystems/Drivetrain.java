@@ -168,7 +168,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive(double forward, double turn) {
-    this.forward = -forward;
+    this.forward = forward;
     this.turn = turn;
     drive.feed();
   }
