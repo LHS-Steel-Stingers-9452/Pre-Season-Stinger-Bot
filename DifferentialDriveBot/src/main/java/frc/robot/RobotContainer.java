@@ -40,13 +40,15 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(-driverController.getLeftY(), ControllerConstants.DRIVER_FORWARD_DEADBAND),//?moving back, make negative
       () -> MathUtil.applyDeadband(driverController.getRightX(), ControllerConstants.DRIVER_TURN_DEADBAND));
     
-    drivetrain.setDefaultCommand(baseDrive);
+    //drivetrain.setDefaultCommand(baseDrive);
 
     RobotContainer.incinerateMotors();
 
   }
 
   private void configureBindings() {
+    //degug solution one TEST
+    drivetrain.setDefaultCommand(baseDrive);
   }
 
   public Command getAutonomousCommand() {
