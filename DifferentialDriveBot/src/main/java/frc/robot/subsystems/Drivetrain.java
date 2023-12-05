@@ -144,9 +144,6 @@ public class Drivetrain extends SubsystemBase {
     //odometry = new DifferentialDriveOdometry()
     //feedforward
     //PID Controllers
-    //Slew Rate Limiters
-    driveFilter = new SlewRateLimiter();
-    turnFilter = new SlewRateLimiter();
     //Ramsete Controllers
     */
 
@@ -158,17 +155,18 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //double slewForward = driveFilter.calculate(forward);
+    double slewForward = driveFilter.calculate(forward);
+    double slewTurn = turnFilter.calculate(turn);
     /* 
     drive.arcadeDrive(
       DriverStation.isAutonomous() ? forward: slewForward, 
       turn);
       */
-      drive.arcadeDrive(forward, turn);
-  }
+      drive.arcadeDrive(slewForward, slewTurn);
+    }
 
   public void drive(double forward, double turn) {
-    this.forward = forward;
+    this.forward = -forward;
     this.turn = turn;
     drive.feed();
   }
