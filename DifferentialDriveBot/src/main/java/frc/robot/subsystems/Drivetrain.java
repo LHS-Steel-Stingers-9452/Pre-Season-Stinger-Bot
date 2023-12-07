@@ -156,13 +156,13 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     double slewForward = driveFilter.calculate(forward);
-    double slewTurn = turnFilter.calculate(turn);
+    //double slewTurn = turnFilter.calculate(turn);
     /* 
     drive.arcadeDrive(
       DriverStation.isAutonomous() ? forward: slewForward, 
       turn);
       */
-      drive.arcadeDrive(slewForward, slewTurn);
+      drive.arcadeDrive(slewForward, turn);
     }
 
   public void drive(double forward, double turn) {
