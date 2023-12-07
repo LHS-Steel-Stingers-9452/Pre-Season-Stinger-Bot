@@ -46,10 +46,10 @@ public final class Constants {
         //public static final int PIGEON_GYRO_CAN_ID;
         
         //Math LOL Constants
-        public static final double SLEW_RATE_DRIVE_POSITIVE = 5;
-        public static final double SLEW_RATE_DRIVE_NEGATIVE = -5;
-        public static final double SLEW_RATE_TURN_POSITIVE = 5;
-        public static final double SLEW_RATE_TURN_NEGATIVE = -5;
+        public static final double SLEW_RATE_DRIVE_POSITIVE = 8;
+        public static final double SLEW_RATE_DRIVE_NEGATIVE = -8;
+        public static final double SLEW_RATE_TURN_POSITIVE = 8;
+        public static final double SLEW_RATE_TURN_NEGATIVE = -8;
 
     }
 }
